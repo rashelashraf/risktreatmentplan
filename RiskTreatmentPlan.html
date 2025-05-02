@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Treatment Plan Template</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --primary-dark: #1a252f;
+            --secondary: #3498db;
+            --light: #ecf0f1;
+            --danger: #e74c3c;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --dark-text: #2c3e50;
+            --light-text: #ecf0f1;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: var(--light-text);
+            text-align: center;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+            position: relative;
+        }
+        
+        h1 {
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        .content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+        }
+        
+        .form-section h2 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .risk-level {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .risk-level label {
+            margin: 0;
+            font-weight: normal;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .risk-level input[type="radio"] {
+            width: auto;
+            margin-right: 5px;
+        }
+        
+        button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        .control-row {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        
+        .control-input {
+            flex: 1;
+        }
+        
+        .remove-control {
+            background-color: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.4rem 0.7rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .metrics-section {
+            margin-top: 1rem;
+        }
+        
+        .metric-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .date-row {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .date-group {
+            flex: 1;
+        }
+        
+        /* Navigation tabs */
+        .tab-navigation {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .tab:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .tab.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Page content */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* Progress bar */
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--success);
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+        
+        /* Navigation buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        /* Saved message */
+        .saved-message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--success);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        
+        .saved-message.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Action buttons */
+        .actions-container {
+            position: sticky;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1rem 0;
+            border-top: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            z-index: 100;
+        }
+        
+        /* Print button */
+        .print-container {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        
+        .print-btn {
+            background-color: var(--light);
+            color: var(--primary-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .print-btn:hover {
+            background-color: #d0d7dc;
+        }
+        
+        .print-btn i {
+            font-size: 1.2rem;
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            font-weight: normal;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Instructions box */
+        .instructions-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .instructions-box h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .instructions-box p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .instructions-box ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .instructions-box li {
+            margin-bottom: 0.25rem;
+        }
+        
+        /* Add control button */
+        .add-control-btn {
+            display: block;
+            margin: 1rem 0;
+            padding: 0.5rem 1rem;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .add-control-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Summary page */
+        .summary-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .summary-item h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .summary-item p {
+            margin: 0.25rem 0;
+        }
+        
+        .summary-item strong {
+            font-weight: 600;
+            display: inline-block;
+            min-width: 180px;
+        }
+        
+        .summary-list {
+            margin-left: 2rem;
+        }
+        
+        /* Print styles */
+        @media print {
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+            
+            header {
+                margin-bottom: 1rem;
+            }
+            
+            .content {
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            .tab-navigation, .nav-buttons, .actions-container, .print-btn {
+                display: none !important;
+            }
+            
+            .page {
+                display: block !important;
+                page-break-after: always;
+            }
+            
+            .page:last-child {
+                page-break-after: avoid;
+            }
+            
+            h2 {
+                margin-top: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Risk Treatment Plan</h1>
+            <p class="subtitle">A comprehensive approach to managing identified risks</p>
+            <div class="print-container">
+                <button class="print-btn" onclick="printCurrentPage()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                        <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                    </svg>
+                    Print Current Page
+                </button>
+            </div>
+        </header>
+        
+        <div class="content">
+            <div class="instructions-box">
+                <h3>Instructions for Students</h3>
+                <p>This interactive template will guide you through creating a comprehensive Risk Treatment Plan. Navigate through each section using the tabs below.</p>
+                <ul>
+                    <li>Complete each section with detailed and specific information</li>
+                    <li>Use the "Save Data" button to save your progress</li>
+                    <li>Use the "Print Current Page" button to take screenshots of each completed section</li>
+                    <li>The "Summary" tab will show all your completed information</li>
+                </ul>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+            </div>
+            
+            <div class="tab-navigation" id="tab-navigation">
+                <button class="tab active" data-page="page1">1. Risk Identification</button>
+                <button class="tab" data-page="page2">2. Treatment Strategy</button>
+                <button class="tab" data-page="page3">3. Control Measures</button>
+                <button class="tab" data-page="page4">4. Resources</button>
+                <button class="tab" data-page="page5">5. Timeline</button>
+                <button class="tab" data-page="page6">6. Residual Risk</button>
+                <button class="tab" data-page="page7">7. Monitoring</button>
+                <button class="tab" data-page="page8">8. Accountability</button>
+                <button class="tab" data-page="page9">9. Approval</button>
+                <button class="tab" data-page="page10">Summary</button>
+            </div>
+            
+            <form id="risk-treatment-form">
+                <!-- Page 1: Risk Identification -->
+                <div id="page1" class="page active">
+                    <div class="form-section">
+                        <h2>1. Risk Identification</h2>
+                        <div class="form-group">
+                            <label for="risk-id">Risk ID:</label>
+                            <input type="text" id="risk-id" placeholder="e.g., RK-001" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="risk-name">Risk Name:</label>
+                            <input type="text" id="risk-name" placeholder="Brief title of the risk" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="risk-description">Risk Description:</label>
+                            <textarea id="risk-description" placeholder="Detailed description of the risk, including potential causes and impacts" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="risk-category">Risk Category:</label>
+                            <select id="risk-category" required>
+                                <option value="">-- Select a category --</option>
+                                <option value="Strategic">Strategic</option>
+                                <option value="Operational">Operational</option>
+                                <option value="Financial">Financial</option>
+                                <option value="Compliance">Compliance</option>
+                                <option value="Technological">Technological</option>
+                                <option value="Environmental">Environmental</option>
+                                <option value="Reputational">Reputational</option>
+                                <option value="People">People</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Risk Level (Before Treatment):</label>
+                            <div class="risk-level">
+                                <label><input type="radio" name="risk-level" value="Low" required> Low</label>
+                                <label><input type="radio" name="risk-level" value="Medium"> Medium</label>
+                                <label><input type="radio" name="risk-level" value="High"> High</label>
+                                <label><input type="radio" name="risk-level" value="Critical"> Critical</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <span></span>
+                        <button type="button" class="btn-primary" onclick="nextPage()">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Page 2: Risk Treatment Strategy -->
+                <div id="page2" class="page">
+                    <div class="form-section">
+                        <h2>2. Risk Treatment Strategy</h2>
+                        <div class="form-group">
+                            <label for="treatment-approach">Treatment Approach:</label>
+                            <select id="treatment-approach" required>
+                                <option value="">-- Select an approach --</option>
+                                <option value="Avoid">Avoid - Eliminate the risk</option>
+                                <option value="Mitigate">Mitigate - Reduce the likelihood or impact</option>
+                                <option value="Transfer">Transfer - Share or transfer to third party</option>
+                                <option value="Accept">Accept - Monitor the risk</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="treatment-justification">Justification for Chosen Approach:</label>
+                            <textarea id="treatment-justification" placeholder="Explain why this approach was chosen over alternatives" required></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button type="button" class="btn-primary" onclick="prevPage()">Previous</button>
+                        <button type="button" class="btn-primary" onclick="nextPage()">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Page 3: Control Measures -->
+                <div id="page3" class="page">
+                    <div class="form-section">
+                        <h2>3. Control Measures</h2>
+                        <p>List the specific controls that will be implemented to treat this risk:</p>
+                        
+                        <div id="controls-container">
+                            <!-- Controls will be added here -->
+                        </div>
+                        
+                        <button type="button" id="add-control" class="add-control-btn">+ Add Control Measure</button>
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button type="button" class="btn-primary" onclick="prevPage()">Previous</button>
+                        <button type="button" class="btn-primary" onclick="nextPage()">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Page 4: Resources Required -->
+                <div id="page4" class="page">
+                    <div class="form-section">
+                        <h2>4. Resources Required</h2>
+                        <div class="form-group">
+                            <label for="human-resources">Human Resources:</label>
+                            <textarea id="human-resources" placeholder="Staff, skills, and roles required"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="financial-resources">Financial Resources:</label>
+                            <textarea id="financial-resources" placeholder="Budget and costs associated with risk treatment"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="technical-resources">Technical Resources:</label>
+                            <textarea id="technical-resources" placeholder="Equipment, technology, systems required"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button type="button" class="btn-primary" onclick="prevPage()">Previous</button>
+                        <button type="button" class="btn-primary" onclick="nextPage()">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Page 5: Implementation Timeline -->
+                <div id="page5" class="page">
+                    <div class="form-section">
+                        <h2>5. Implementation Timeline</h2>
+                        <div class="date-row">
+                            <div class="date-group form-group">
+                                <label for="planned-start">Planned Start Date:</label>
+                                <input type="date" id="planned-start" required>
+                            </div>
+                            
+                            <div class="date-group form-group">
+                                <label for="planned-completion">Planned Completion Date:</label>
+                                <input type="date" id="planned-completion" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="key-milestones">Key Milestones:</label>
+                            <textarea id="key-milestones" placeholder="List important milestones and their target dates"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button type="button" class="btn-primary" onclick="prevPage()">Previous</button>
+                        <button type="button" class="btn-primary" onclick="nextPage()">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Page 6: Residual Risk Assessment -->
+                <div id="page6" class="page">
+                    <div class="form-section">
+                        <h2>6. Residual Risk Assessment</h2>
+                        <div class="form-group">
+                            <label>Residual Risk Level (After Treatment):</label>
+                            <div class="risk-level">
+                                <label><input type="radio" name="residual-risk-level" value="Low" required> Low</label>
+                                <label><input type="radio" name="residual-risk-level" value="Medium"> Medium</label>
+                                <label><input type="radio" name="residual-risk-level" value="High"> High</label>
+                                <label><input type="radio" name="residual-risk-level" value="Critical"> Critical</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="residual-risk-justification">Justification for Residual Risk Level:</label>
+                            <textarea id="residual-risk-justification" placeholder="Explain why the chosen controls will reduce the risk to this level" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="residual-risk-acceptance">Residual Risk Acceptance:</label>
+                            <select id="residual-risk-acceptance" required>
+                                <option value="">-- Select --</option>
+                                <option value="Acceptable">Acceptable - No further action needed</option>
+                                <option value="Conditionally Acceptable">Conditionally Acceptable - With monitoring</option>
+                                <option value="Unacceptable">Unacceptable - Further treatment required</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button type="button" class="btn-primary" onclick="prevPage()">Previous</button>
+                        <button type="button" class="btn-primary" onclick="nextPage()">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Page 7: Monitoring & Review -->
+                <div id="page7" class="page">
+                    <div class="form-section">
+                        <h2>7. Monitoring & Review</h2>
+                        <div class="form-group">
+                            <label for="monitoring-approach">Monitoring Approach:</label>
+                            <textarea id="monitoring-approach" placeholder="How will the implementation and effectiveness of controls be monitored?" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="review-frequency">Review Frequency:</label>
+                            <select id="review-frequency" required>
+                                <option value="">-- Select --</option>
+                                <option value="Weekly">Weekly</option>
+                                <option value="Monthly">Monthly</option>
+                                <option value="Quarterly">Quarterly</option>
+                                <option value="Bi-annually">Bi-annually</option>
+                                <option value="Annually">Annually</option>
+                                <option value="As Required">As Required</option>
+                            </select>
+                        </div>
+                        
+                        <div class="metrics-section">
+                            <label>Key Performance Indicators:</label>
+                            <div id="metrics-container">
+                                <!-- Metrics will be added here -->
+                            </div>
+                            
+                            <button type="button" id="add-metric" class="add-control-btn">+ Add KPI</button>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button type="button" class="btn-primary" onclick="prevPage()">Previous</button>
+                        <button type="button" class="btn-primary" onclick="nextPage()">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Page 8: Accountability -->
+                <div id="page8" class="page">
+                    <div class="form-section">
+                        <h2>8. Accountability</h2>
+                        <div class="form-group">
+                            <label for="risk-owner">Risk Owner:</label>
+                            <input type="text" id="risk-owner" placeholder="Person ultimately accountable for the risk" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="treatment-lead">Treatment Plan Lead:</label>
+                            <input type="text" id="treatment-lead" placeholder="Person responsible for implementing the treatment plan" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="stakeholders">Key Stakeholders:</label>
+                            <textarea id="stakeholders" placeholder="List other stakeholders involved in or affected by this risk treatment"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button type="button" class="btn-primary" onclick="prevPage()">Previous</button>
+                        <button type="button" class="btn-primary" onclick="nextPage()">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Page 9: Approval -->
+                <div id="page9" class="page">
+                    <div class="form-section">
+                        <h2>9. Approval</h2>
+                        <div class="form-group">
+                            <label for="prepared-by">Prepared By:</label>
+                            <input type="text" id="prepared-by" placeholder="Name of person who prepared this plan" required>
+                        </div>
+                        
+                        <div class="date-row">
+                            <div class="date-group form-group">
+                                <label for="prepared-date">Preparation Date:</label>
+                                <input type="date" id="prepared-date" required>
+                            </div>
+                            
+                            <div class="date-group form-group">
+                                <label for="approved-date">Approval Date:</label>
+                                <input type="date" id="approved-date" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="approved-by">Approved By:</label>
+                            <input type="text" id="approved-by" placeholder="Name and title of person who approved this plan" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="approval-comments">Approval Comments:</label>
+                            <textarea id="approval-comments" placeholder="Any comments or conditions relating to approval"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button type="button" class="btn-primary" onclick="prevPage()">Previous</button>
+                        <button type="button" class="btn-primary" onclick="nextPage()">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Page 10: Summary -->
+                <div id="page10" class="page">
+                    <div class="form-section">
+                        <h2>Risk Treatment Plan Summary</h2>
+                        
+                        <div id="summary-content">
+                            <!-- Summary content will be generated here -->
+                        </div>
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button type="button" class="btn-primary" onclick="prevPage()">Previous</button>
+                        <button type="button" class="btn-primary" onclick="updateSummary()">Refresh Summary</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div class="actions-container">
+            <button id="save-btn" class="btn-primary">Save Data</button>
+            <button id="load-btn" class="btn-primary">Load Data</button>
+            <button id="clear-btn" class="btn-danger">Clear Form</button>
+            <div class="tooltip">
+                <button class="btn-success">Screenshot Guide</button>
+                <span class="tooltiptext">To take a screenshot: Press PrtScn (Windows) or Cmd+Shift+4 (Mac) to capture each completed page</span>
+            </div>
+        </div>
+        
+        <div id="saved-message" class="saved-message">Data saved successfully!</div>
+    </div>
+    
+    <script>
+        // Current page tracking
+        let currentPage = 1;
+        const totalPages = 10;
+        
+        // Initialize when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up tab navigation
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update current page number
+                    currentPage = parseInt(pageId.replace('page', ''));
+                    updateProgress();
+                });
+            });
+            
+            // Add control measure
+            document.getElementById('add-control').addEventListener('click', function() {
+                const controlsContainer = document.getElementById('controls-container');
+                const controlRow = document.createElement('div');
+                controlRow.className = 'control-row';
+                
+                controlRow.innerHTML = `
+                    <div class="control-input">
+                        <input type="text" placeholder="Describe the control measure" class="control-measure" required>
+                    </div>
+                    <div class="control-input">
+                        <select class="control-type" required>
+                            <option value="">-- Control Type --</option>
+                            <option value="Preventive">Preventive</option>
+                            <option value="Detective">Detective</option>
+                            <option value="Corrective">Corrective</option>
+                            <option value="Directive">Directive</option>
+                        </select>
+                    </div>
+                    <button type="button" class="remove-control">Remove</button>
+                `;
+                
+                controlsContainer.appendChild(controlRow);
+                
+                // Add click event to the remove button
+                controlRow.querySelector('.remove-control').addEventListener('click', function() {
+                    controlRow.remove();
+                });
+            });
+            
+            // Add KPI
+            document.getElementById('add-metric').addEventListener('click', function() {
+                const metricsContainer = document.getElementById('metrics-container');
+                const metricRow = document.createElement('div');
+                metricRow.className = 'metric-row';
+                
+                metricRow.innerHTML = `
+                    <div class="control-input">
+                        <input type="text" placeholder="KPI Description" class="kpi-description" required>
+                    </div>
+                    <div class="control-input">
+                        <input type="text" placeholder="Target Value" class="kpi-target" required>
+                    </div>
+                    <button type="button" class="remove-control">Remove</button>
+                `;
+                
+                metricsContainer.appendChild(metricRow);
+                
+                // Add click event to the remove button
+                metricRow.querySelector('.remove-control').addEventListener('click', function() {
+                    metricRow.remove();
+                });
+            });
+            
+            // Save form data to localStorage
+            document.getElementById('save-btn').addEventListener('click', function() {
+                const formData = collectFormData();
+                localStorage.setItem('riskTreatmentPlanData', JSON.stringify(formData));
+                
+                // Show saved message
+                const savedMessage = document.getElementById('saved-message');
+                savedMessage.classList.add('show');
+                
+                setTimeout(function() {
+                    savedMessage.classList.remove('show');
+                }, 3000);
+            });
+            
+            // Load form data from localStorage
+            document.getElementById('load-btn').addEventListener('click', function() {
+                const savedData = localStorage.getItem('riskTreatmentPlanData');
+                
+                if (savedData) {
+                    const formData = JSON.parse(savedData);
+                    populateFormData(formData);
+                    updateSummary();
+                } else {
+                    alert('No saved data found');
+                }
+            });
+            
+            // Clear form
+            document.getElementById('clear-btn').addEventListener('click', function() {
+                if (confirm('Are you sure you want to clear all form data?')) {
+                    document.getElementById('risk-treatment-form').reset();
+                    document.getElementById('controls-container').innerHTML = '';
+                    document.getElementById('metrics-container').innerHTML = '';
+                    document.getElementById('summary-content').innerHTML = '';
+                }
+            });
+            
+            // Add default control and KPI on page load
+            document.getElementById('add-control').click();
+            document.getElementById('add-metric').click();
+            
+            // Set today's date as default for date fields
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('prepared-date').value = today;
+            
+            // Initial progress update
+            updateProgress();
+        });
+        
+        // Function to show a specific page
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the specified page
+            document.getElementById(pageId).classList.add('active');
+            
+            // If showing summary page, update it
+            if (pageId === 'page10') {
+                updateSummary();
+            }
+        }
+        
+        // Navigate to next page
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage('page' + currentPage);
+                
+                // Update active tab
+                document.querySelectorAll('.tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                document.querySelector(`.tab[data-page="page${currentPage}"]`).classList.add('active');
+                
+                updateProgress();
+            }
+        }
+        
+        // Navigate to previous page
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage('page' + currentPage);
+                
+                // Update active tab
+                document.querySelectorAll('.tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                document.querySelector(`.tab[data-page="page${currentPage}"]`).classList.add('active');
+                
+                updateProgress();
+            }
+        }
+        
+        // Update progress bar
+        function updateProgress() {
+            const progressPercent = ((currentPage - 1) / (totalPages - 1)) * 100;
+            document.getElementById('progress-bar').style.width = progressPercent + '%';
+        }
+        
+        // Function to collect all form data
+        function collectFormData() {
+            const formData = {
+                riskId: document.getElementById('risk-id').value,
+                riskName: document.getElementById('risk-name').value,
+                riskDescription: document.getElementById('risk-description').value,
+                riskCategory: document.getElementById('risk-category').value,
+                riskLevel: document.querySelector('input[name="risk-level"]:checked')?.value,
+                treatmentApproach: document.getElementById('treatment-approach').value,
+                treatmentJustification: document.getElementById('treatment-justification').value,
+                controls: Array.from(document.querySelectorAll('.control-row')).map(row => ({
+                    measure: row.querySelector('.control-measure').value,
+                    type: row.querySelector('.control-type').value
+                })),
+                humanResources: document.getElementById('human-resources').value,
+                financialResources: document.getElementById('financial-resources').value,
+                technicalResources: document.getElementById('technical-resources').value,
+                plannedStart: document.getElementById('planned-start').value,
+                plannedCompletion: document.getElementById('planned-completion').value,
+                keyMilestones: document.getElementById('key-milestones').value,
+                residualRiskLevel: document.querySelector('input[name="residual-risk-level"]:checked')?.value,
+                residualRiskJustification: document.getElementById('residual-risk-justification').value,
+                residualRiskAcceptance: document.getElementById('residual-risk-acceptance').value,
+                monitoringApproach: document.getElementById('monitoring-approach').value,
+                reviewFrequency: document.getElementById('review-frequency').value,
+                kpis: Array.from(document.querySelectorAll('.metric-row')).map(row => ({
+                    description: row.querySelector('.kpi-description').value,
+                    target: row.querySelector('.kpi-target').value
+                })),
+                riskOwner: document.getElementById('risk-owner').value,
+                treatmentLead: document.getElementById('treatment-lead').value,
+                stakeholders: document.getElementById('stakeholders').value,
+                preparedBy: document.getElementById('prepared-by').value,
+                preparedDate: document.getElementById('prepared-date').value,
+                approvedDate: document.getElementById('approved-date').value,
+                approvedBy: document.getElementById('approved-by').value,
+                approvalComments: document.getElementById('approval-comments').value
+            };
+            
+            return formData;
+        }
+        
+        // Function to populate form with saved data
+        function populateFormData(data) {
+            // Clear existing controls and KPIs
+            document.getElementById('controls-container').innerHTML = '';
+            document.getElementById('metrics-container').innerHTML = '';
+            
+            // Populate basic fields
+            document.getElementById('risk-id').value = data.riskId || '';
+            document.getElementById('risk-name').value = data.riskName || '';
+            document.getElementById('risk-description').value = data.riskDescription || '';
+            document.getElementById('risk-category').value = data.riskCategory || '';
+            document.getElementById('treatment-approach').value = data.treatmentApproach || '';
+            document.getElementById('treatment-justification').value = data.treatmentJustification || '';
+            document.getElementById('human-resources').value = data.humanResources || '';
+            document.getElementById('financial-resources').value = data.financialResources || '';
+            document.getElementById('technical-resources').value = data.technicalResources || '';
+            document.getElementById('planned-start').value = data.plannedStart || '';
+            document.getElementById('planned-completion').value = data.plannedCompletion || '';
+            document.getElementById('key-milestones').value = data.keyMilestones || '';
+            document.getElementById('residual-risk-justification').value = data.residualRiskJustification || '';
+            document.getElementById('residual-risk-acceptance').value = data.residualRiskAcceptance || '';
+            document.getElementById('monitoring-approach').value = data.monitoringApproach || '';
+            document.getElementById('review-frequency').value = data.reviewFrequency || '';
+            document.getElementById('risk-owner').value = data.riskOwner || '';
+            document.getElementById('treatment-lead').value = data.treatmentLead || '';
+            document.getElementById('stakeholders').value = data.stakeholders || '';
+            document.getElementById('prepared-by').value = data.preparedBy || '';
+            document.getElementById('prepared-date').value = data.preparedDate || '';
+            document.getElementById('approved-date').value = data.approvedDate || '';
+            document.getElementById('approved-by').value = data.approvedBy || '';
+            document.getElementById('approval-comments').value = data.approvalComments || '';
+            
+            // Set radio buttons
+            if (data.riskLevel) {
+                document.querySelector(`input[name="risk-level"][value="${data.riskLevel}"]`).checked = true;
+            }
+            
+            if (data.residualRiskLevel) {
+                document.querySelector(`input[name="residual-risk-level"][value="${data.residualRiskLevel}"]`).checked = true;
+            }
+            
+            // Add controls
+            if (data.controls && data.controls.length > 0) {
+                data.controls.forEach(control => {
+                    const controlsContainer = document.getElementById('controls-container');
+                    const controlRow = document.createElement('div');
+                    controlRow.className = 'control-row';
+                    
+                    controlRow.innerHTML = `
+                        <div class="control-input">
+                            <input type="text" placeholder="Describe the control measure" class="control-measure" value="${control.measure || ''}" required>
+                        </div>
+                        <div class="control-input">
+                            <select class="control-type" required>
+                                <option value="">-- Control Type --</option>
+                                <option value="Preventive" ${control.type === 'Preventive' ? 'selected' : ''}>Preventive</option>
+                                <option value="Detective" ${control.type === 'Detective' ? 'selected' : ''}>Detective</option>
+                                <option value="Corrective" ${control.type === 'Corrective' ? 'selected' : ''}>Corrective</option>
+                                <option value="Directive" ${control.type === 'Directive' ? 'selected' : ''}>Directive</option>
+                            </select>
+                        </div>
+                        <button type="button" class="remove-control">Remove</button>
+                    `;
+                    
+                    controlsContainer.appendChild(controlRow);
+                    
+                    // Add click event to the remove button
+                    controlRow.querySelector('.remove-control').addEventListener('click', function() {
+                        controlRow.remove();
+                    });
+                });
+            }
+            
+            // Add KPIs
+            if (data.kpis && data.kpis.length > 0) {
+                data.kpis.forEach(kpi => {
+                    const metricsContainer = document.getElementById('metrics-container');
+                    const metricRow = document.createElement('div');
+                    metricRow.className = 'metric-row';
+                    
+                    metricRow.innerHTML = `
+                        <div class="control-input">
+                            <input type="text" placeholder="KPI Description" class="kpi-description" value="${kpi.description || ''}" required>
+                        </div>
+                        <div class="control-input">
+                            <input type="text" placeholder="Target Value" class="kpi-target" value="${kpi.target || ''}" required>
+                        </div>
+                        <button type="button" class="remove-control">Remove</button>
+                    `;
+                    
+                    metricsContainer.appendChild(metricRow);
+                    
+                    // Add click event to the remove button
+                    metricRow.querySelector('.remove-control').addEventListener('click', function() {
+                        metricRow.remove();
+                    });
+                });
+            }
+        }
+        
+        // Function to update the summary page
+        function updateSummary() {
+            const formData = collectFormData();
+            const summaryContainer = document.getElementById('summary-content');
+            
+            // Clear existing content
+            summaryContainer.innerHTML = '';
+            
+            // Create summary sections
+            
+            // Risk Identification
+            const riskSection = document.createElement('div');
+            riskSection.className = 'summary-item';
+            riskSection.innerHTML = `
+                <h3>Risk Identification</h3>
+                <p><strong>Risk ID:</strong> ${formData.riskId || 'Not specified'}</p>
+                <p><strong>Risk Name:</strong> ${formData.riskName || 'Not specified'}</p>
+                <p><strong>Risk Category:</strong> ${formData.riskCategory || 'Not specified'}</p>
+                <p><strong>Risk Level:</strong> ${formData.riskLevel || 'Not specified'}</p>
+                <p><strong>Description:</strong> ${formData.riskDescription || 'Not specified'}</p>
+            `;
+            summaryContainer.appendChild(riskSection);
+            
+            // Treatment Strategy
+            const strategySection = document.createElement('div');
+            strategySection.className = 'summary-item';
+            strategySection.innerHTML = `
+                <h3>Treatment Strategy</h3>
+                <p><strong>Approach:</strong> ${formData.treatmentApproach || 'Not specified'}</p>
+                <p><strong>Justification:</strong> ${formData.treatmentJustification || 'Not specified'}</p>
+            `;
+            summaryContainer.appendChild(strategySection);
+            
+            // Control Measures
+            const controlsSection = document.createElement('div');
+            controlsSection.className = 'summary-item';
+            controlsSection.innerHTML = `<h3>Control Measures</h3>`;
+            
+            if (formData.controls && formData.controls.length > 0) {
+                const controlsList = document.createElement('ul');
+                controlsList.className = 'summary-list';
+                
+                formData.controls.forEach(control => {
+                    const controlItem = document.createElement('li');
+                    controlItem.textContent = `${control.measure || 'Not specified'} (${control.type || 'Type not specified'})`;
+                    controlsList.appendChild(controlItem);
+                });
+                
+                controlsSection.appendChild(controlsList);
+            } else {
+                controlsSection.innerHTML += `<p>No control measures specified</p>`;
+            }
+            
+            summaryContainer.appendChild(controlsSection);
+            
+            // Resources
+            const resourcesSection = document.createElement('div');
+            resourcesSection.className = 'summary-item';
+            resourcesSection.innerHTML = `
+                <h3>Resources Required</h3>
+                <p><strong>Human Resources:</strong> ${formData.humanResources || 'Not specified'}</p>
+                <p><strong>Financial Resources:</strong> ${formData.financialResources || 'Not specified'}</p>
+                <p><strong>Technical Resources:</strong> ${formData.technicalResources || 'Not specified'}</p>
+            `;
+            summaryContainer.appendChild(resourcesSection);
+            
+            // Timeline
+            const timelineSection = document.createElement('div');
+            timelineSection.className = 'summary-item';
+            timelineSection.innerHTML = `
+                <h3>Implementation Timeline</h3>
+                <p><strong>Planned Start:</strong> ${formData.plannedStart || 'Not specified'}</p>
+                <p><strong>Planned Completion:</strong> ${formData.plannedCompletion || 'Not specified'}</p>
+                <p><strong>Key Milestones:</strong> ${formData.keyMilestones || 'Not specified'}</p>
+            `;
+            summaryContainer.appendChild(timelineSection);
+            
+            // Residual Risk
+            const residualSection = document.createElement('div');
+            residualSection.className = 'summary-item';
+            residualSection.innerHTML = `
+                <h3>Residual Risk Assessment</h3>
+                <p><strong>Residual Risk Level:</strong> ${formData.residualRiskLevel || 'Not specified'}</p>
+                <p><strong>Justification:</strong> ${formData.residualRiskJustification || 'Not specified'}</p>
+                <p><strong>Acceptance Status:</strong> ${formData.residualRiskAcceptance || 'Not specified'}</p>
+            `;
+            summaryContainer.appendChild(residualSection);
+            
+            // Monitoring
+            const monitoringSection = document.createElement('div');
+            monitoringSection.className = 'summary-item';
+            monitoringSection.innerHTML = `
+                <h3>Monitoring & Review</h3>
+                <p><strong>Approach:</strong> ${formData.monitoringApproach || 'Not specified'}</p>
+                <p><strong>Review Frequency:</strong> ${formData.reviewFrequency || 'Not specified'}</p>
+            `;
+            
+            if (formData.kpis && formData.kpis.length > 0) {
+                monitoringSection.innerHTML += `<p><strong>Key Performance Indicators:</strong></p>`;
+                const kpiList = document.createElement('ul');
+                kpiList.className = 'summary-list';
+                
+                formData.kpis.forEach(kpi => {
+                    const kpiItem = document.createElement('li');
+                    kpiItem.textContent = `${kpi.description || 'Not specified'} - Target: ${kpi.target || 'Not specified'}`;
+                    kpiList.appendChild(kpiItem);
+                });
+                
+                monitoringSection.appendChild(kpiList);
+            }
+            
+            summaryContainer.appendChild(monitoringSection);
+            
+            // Accountability
+            const accountabilitySection = document.createElement('div');
+            accountabilitySection.className = 'summary-item';
+            accountabilitySection.innerHTML = `
+                <h3>Accountability</h3>
+                <p><strong>Risk Owner:</strong> ${formData.riskOwner || 'Not specified'}</p>
+                <p><strong>Treatment Lead:</strong> ${formData.treatmentLead || 'Not specified'}</p>
+                <p><strong>Key Stakeholders:</strong> ${formData.stakeholders || 'Not specified'}</p>
+            `;
+            summaryContainer.appendChild(accountabilitySection);
+            
+            // Approval
+            const approvalSection = document.createElement('div');
+            approvalSection.className = 'summary-item';
+            approvalSection.innerHTML = `
+                <h3>Approval</h3>
+                <p><strong>Prepared By:</strong> ${formData.preparedBy || 'Not specified'}</p>
+                <p><strong>Preparation Date:</strong> ${formData.preparedDate || 'Not specified'}</p>
+                <p><strong>Approved By:</strong> ${formData.approvedBy || 'Not specified'}</p>
+                <p><strong>Approval Date:</strong> ${formData.approvedDate || 'Not specified'}</p>
+                <p><strong>Comments:</strong> ${formData.approvalComments || 'None'}</p>
+            `;
+            summaryContainer.appendChild(approvalSection);
+        }
+        
+        // Function to print current page
+        function printCurrentPage() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
